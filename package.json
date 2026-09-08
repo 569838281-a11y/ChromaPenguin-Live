@@ -1,0 +1,82 @@
+{
+  "name": "chroma-penguin-live",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ChromaPenguin-Live 梦幻云端变身站桌面版",
+  "author": "ChromaPenguin",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "electron:dev": "concurrently -k \"vite --port 5174\" \"wait-on http://127.0.0.1:5174 && electron .\"",
+    "electron:build": "vite build && electron-builder --win",
+    "dist": "npm run electron:build"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.115.0",
+    "lucide-react": "^0.511.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.2",
+    "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.4",
+    "electron": "^35.7.5",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.5.4",
+    "tailwindcss": "^3.4.17",
+    "vite": "^6.3.5",
+    "wait-on": "^8.0.5"
+  },
+  "build": {
+    "appId": "com.chromapenguin.live",
+    "productName": "ChromaPenguin-Live",
+    "copyright": "Copyright © ChromaPenguin",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "asar": false,
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "desktop-config.json",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "desktop-config.json",
+        "to": "desktop-config.json"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.png",
+      "signAndEditExecutable": false,
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ChromaPenguin-Live"
+    }
+  }
+}

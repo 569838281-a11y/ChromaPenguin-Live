@@ -1,0 +1,8 @@
+{
+  "backendHost": "127.0.0.1",
+  "backendPort": 8765,
+  "autoStartBackend": true,
+  "pythonPath": "D:\\anaconda3\\envs\\erdes\\python.exe",
+  "backendDir": "C:\\Users\\ADMIN\\Desktop\\大三下\\fastsam-penguin",
+  "backendScript": "web_server.py"
+}
